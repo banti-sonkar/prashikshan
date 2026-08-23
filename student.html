@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Internship Application | Prashikshan</title>
+
+    <!-- CSS file -->
+    <link rel="stylesheet" href="student.css">
+</head>
+
+<body>
+
+    <!-- Internship Application Modal -->
+
+    <div class="modal show" id="applicationModal">
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                class="close-modal"
+                onclick="closeApplicationForm()"
+                aria-label="Close application form"
+            >
+                ×
+            </button>
+
+            <h2>Internship Application Form</h2>
+
+            <p class="form-subtitle">
+                Please fill all required details carefully.
+            </p>
+
+            <form id="internshipApplicationForm">
+
+                <input
+                    type="hidden"
+                    id="selectedInternshipId"
+                    value="1"
+                >
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="applicantName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="applicantName"
+                            placeholder="Enter your full name"
+                            autocomplete="name"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="applicantEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="applicantEmail"
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="applicantMobile">
+                            Mobile Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="applicantMobile"
+                            placeholder="Enter 10-digit mobile number"
+                            maxlength="10"
+                            inputmode="numeric"
+                            autocomplete="tel"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="dateOfBirth">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dateOfBirth"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="gender">
+                            Gender
+                        </label>
+
+                        <select id="gender" required>
+
+                            <option value="">
+                                Select gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="qualification">
+                            Highest Qualification
+                        </label>
+
+                        <select id="qualification" required>
+
+                            <option value="">
+                                Select qualification
+                            </option>
+
+                            <option value="12th">12th</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="B.Tech">B.Tech</option>
+                            <option value="BCA">BCA</option>
+                            <option value="B.Sc">B.Sc</option>
+                            <option value="M.Tech">M.Tech</option>
+                            <option value="MCA">MCA</option>
+                            <option value="Other">Other</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="collegeName">
+                            College / University Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="collegeName"
+                            placeholder="Enter college name"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="course">
+                            Course / Branch
+                        </label>
+
+                        <input
+                            type="text"
+                            id="course"
+                            placeholder="Example: B.Tech CSE"
+                            required
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="currentYear">
+                            Current Year
+                        </label>
+
+                        <select id="currentYear" required>
+
+                            <option value="">
+                                Select current year
+                            </option>
+
+                            <option value="1st Year">1st Year</option>
+                            <option value="2nd Year">2nd Year</option>
+                            <option value="3rd Year">3rd Year</option>
+                            <option value="4th Year">4th Year</option>
+                            <option value="Passed Out">Passed Out</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="academicScore">
+                            CGPA / Percentage
+                        </label>
+
+                        <input
+                            type="text"
+                            id="academicScore"
+                            placeholder="Example: 7.5 CGPA or 75%"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label for="address">
+                        Complete Address
+                    </label>
+
+                    <textarea
+                        id="address"
+                        rows="3"
+                        placeholder="Enter house number, city, district, state and PIN code"
+                        autocomplete="street-address"
+                        required
+                    ></textarea>
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label for="skills">
+                        Skills
+                    </label>
+
+                    <input
+                        type="text"
+                        id="skills"
+                        placeholder="Example: Java, Python, HTML, CSS, JavaScript"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label for="resumeLink">
+                        Resume Link
+                    </label>
+
+                    <input
+                        type="url"
+                        id="resumeLink"
+                        placeholder="Paste public Google Drive resume link"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group full-width">
+
+                    <label for="coverLetter">
+                        Cover Letter
+                    </label>
+
+                    <textarea
+                        id="coverLetter"
+                        rows="5"
+                        minlength="30"
+                        placeholder="Write why you are suitable for this internship"
+                        required
+                    ></textarea>
+
+                </div>
+
+                <label class="declaration">
+
+                    <input
+                        type="checkbox"
+                        id="declaration"
+                        required
+                    >
+
+                    <span>
+                        I confirm that all provided information is correct.
+                    </span>
+
+                </label>
+
+                <button
+                    type="submit"
+                    class="submit-application-btn"
+                >
+                    Submit Application
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="student.js"></script>
+
+</body>
+</html>
+

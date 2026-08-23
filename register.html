@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Register | Prashikshan</title>
+
+    <link rel="stylesheet" href="./register.css">
+
+</head>
+
+<body>
+
+<main class="register-page">
+
+<section class="register-card">
+
+    <a href="index.html" class="back-link">
+        ← Back to Home
+    </a>
+
+
+    <!-- HEADER -->
+
+    <div class="register-heading">
+
+        <div class="register-logo">
+            🎓
+        </div>
+
+        <h1>
+            Create Account
+        </h1>
+
+        <p>
+            Join Prashikshan and choose your account type.
+        </p>
+
+    </div>
+
+
+    <!-- =================================================
+         ROLE SELECTION
+    ================================================= -->
+
+    <div
+        class="account-type-section"
+        id="roleSection"
+    >
+
+        <h2>
+            Register as
+        </h2>
+
+        <p class="account-type-subtitle">
+            Select the account type you want to create
+        </p>
+
+
+        <div class="account-type-grid">
+
+
+            <!-- STUDENT -->
+
+            <button
+                type="button"
+                class="account-type-card"
+                onclick="selectRole('student')"
+            >
+
+                <div class="account-type-icon">
+                    🎓
+                </div>
+
+                <h3>
+                    Student
+                </h3>
+
+                <p>
+                    Find internships, build your profile,
+                    develop skills and start your career.
+                </p>
+
+                <span>
+                    Register as Student →
+                </span>
+
+            </button>
+
+
+            <!-- INSTITUTE -->
+
+            <button
+                type="button"
+                class="account-type-card"
+                onclick="selectRole('institute')"
+            >
+
+                <div class="account-type-icon">
+                    🏫
+                </div>
+
+                <h3>
+                    Institute
+                </h3>
+
+                <p>
+                    Manage students, verify internships
+                    and monitor student progress.
+                </p>
+
+                <span>
+                    Register as Institute →
+                </span>
+
+            </button>
+
+
+            <!-- INDUSTRY -->
+
+            <button
+                type="button"
+                class="account-type-card"
+                onclick="selectRole('industry')"
+            >
+
+                <div class="account-type-icon">
+                    🏭
+                </div>
+
+                <h3>
+                    Industry
+                </h3>
+
+                <p>
+                    Post internships, find skilled students
+                    and manage applications.
+                </p>
+
+                <span>
+                    Register as Industry →
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================================
+         SELECTED ROLE
+    ================================================= -->
+
+    <div
+        class="selected-role"
+        id="selectedRoleBox"
+        hidden
+    >
+
+        <span
+            class="selected-role-icon"
+            id="selectedRoleIcon"
+        >
+            🎓
+        </span>
+
+        <div>
+
+            <small>
+                Registering as
+            </small>
+
+            <strong id="selectedRoleText">
+                Student
+            </strong>
+
+        </div>
+
+        <button
+            type="button"
+            class="change-role-btn"
+            onclick="changeRole()"
+        >
+            Change
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         REGISTRATION FORM
+    ================================================= -->
+
+    <form
+        id="registerForm"
+        hidden
+    >
+
+        <input
+            type="hidden"
+            id="role"
+        >
+
+
+        <!-- FULL NAME -->
+
+        <div class="form-group">
+
+            <label for="fullName">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="fullName"
+                placeholder="Enter your full name"
+                required
+            >
+
+            <small
+                class="error-message"
+                id="fullNameError"
+            ></small>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="form-group">
+
+            <label for="email">
+                Email Address
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="example@gmail.com"
+                required
+            >
+
+            <small
+                class="error-message"
+                id="emailError"
+            ></small>
+
+        </div>
+
+
+        <!-- MOBILE -->
+
+        <div class="form-group">
+
+            <label for="mobile">
+                Mobile Number
+            </label>
+
+            <div class="mobile-input">
+
+                <span class="country-code">
+                    +91
+                </span>
+
+                <input
+                    type="tel"
+                    id="mobile"
+                    maxlength="10"
+                    inputmode="numeric"
+                    placeholder="Enter 10-digit mobile number"
+                    required
+                >
+
+            </div>
+
+            <small
+                class="error-message"
+                id="mobileError"
+            ></small>
+
+        </div>
+
+
+        <!-- ROLE -->
+
+        <div class="form-group">
+
+            <label>
+                Account Type
+            </label>
+
+            <div
+                class="role-display"
+                id="roleDisplay"
+            >
+                🎓 Student
+            </div>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <div class="password-field">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a strong password"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    data-target="password"
+                >
+                    Show
+                </button>
+
+            </div>
+
+            <small class="password-help">
+                Minimum 8 characters, uppercase,
+                lowercase and number.
+            </small>
+
+            <small
+                class="error-message"
+                id="passwordError"
+            ></small>
+
+        </div>
+
+
+        <!-- CONFIRM PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="confirmPassword">
+                Confirm Password
+            </label>
+
+            <div class="password-field">
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Enter password again"
+                    required
+                >
+
+                <button
+                    type="button"
+                    class="password-toggle"
+                    data-target="confirmPassword"
+                >
+                    Show
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- TERMS -->
+
+        <div class="terms-group">
+
+            <input
+                type="checkbox"
+                id="terms"
+            >
+
+            <label for="terms">
+                I agree to the Terms and Privacy Policy.
+            </label>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div
+            id="formMessage"
+            class="form-message"
+        ></div>
+
+
+        <!-- SEND OTP -->
+
+        <button
+            type="submit"
+            class="register-button"
+            id="sendOtpButton"
+        >
+            📧 submit
+        </button>
+
+    </form>
+
+
+    <!-- =================================================
+         OTP SECTION
+    ================================================= -->
+
+    <div
+        id="otpSection"
+        hidden
+    >
+
+        <div class="otp-header">
+
+            <div class="otp-icon">
+                📩
+            </div>
+
+            <h2>
+                Verify Your Email
+            </h2>
+
+            <p>
+                We have sent a 6-digit OTP to
+            </p>
+
+            <strong id="otpEmail">
+                example@gmail.com
+            </strong>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="otp">
+                Enter OTP
+            </label>
+
+            <input
+                type="text"
+                id="otp"
+                maxlength="6"
+                inputmode="numeric"
+                autocomplete="one-time-code"
+                placeholder="Enter 6-digit OTP"
+                class="otp-input"
+            >
+
+        </div>
+
+
+        <div
+            id="otpMessage"
+            class="form-message"
+        ></div>
+
+
+        <button
+            type="button"
+            class="register-button"
+            id="verifyOtpButton"
+        >
+            ✓ Verify OTP
+        </button>
+
+
+        <button
+            type="button"
+            class="resend-button"
+            id="resendOtpButton"
+        >
+            Resend OTP
+        </button>
+
+
+        <button
+            type="button"
+            class="change-email-button"
+            onclick="backToRegistration()"
+        >
+            ← Change Details
+        </button>
+
+    </div>
+
+
+    <!-- LOGIN -->
+
+    <p class="login-text">
+
+        Already have an account?
+
+        <a href="login.html">
+            Login here
+        </a>
+
+    </p>
+
+</section>
+
+</main>
+
+
+<script src="register.js"></script>
+
+</body>
+
+</html>

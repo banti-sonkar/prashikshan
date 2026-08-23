@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Prashikshan Institute Dashboard for managing students, internships and applications."
+    >
+
+    <title>Institute Dashboard | Prashikshan</title>
+
+    <link
+        rel="stylesheet"
+        href="./institute.css"
+    >
+</head>
+
+<body data-required-role="institute">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <h1>
+                🏫 Institute Dashboard
+            </h1>
+
+            <p>
+                Manage students, internships and applications.
+            </p>
+
+        </div>
+
+
+        <nav
+            class="header-nav"
+            aria-label="Institute dashboard navigation"
+        >
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <div class="logged-in-user">
+
+                <span id="instituteUserName">
+                    Institute User
+                </span>
+
+                <span id="instituteUserRole">
+                    Institute
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                class="logout-btn"
+                onclick="logoutUser()"
+            >
+                Logout
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="container">
+
+        <!-- Dashboard statistics -->
+
+        <section
+            class="stats-grid"
+            aria-label="Institute dashboard statistics"
+        >
+
+            <article class="stat-card">
+
+                <div class="stat-icon">
+                    👨‍🎓
+                </div>
+
+                <div>
+                    <h2 id="totalStudents">0</h2>
+                    <p>Total Students</p>
+                </div>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <div class="stat-icon">
+                    ✅
+                </div>
+
+                <div>
+                    <h2 id="verifiedStudents">0</h2>
+                    <p>Verified Students</p>
+                </div>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <div class="stat-icon">
+                    💼
+                </div>
+
+                <div>
+                    <h2 id="totalInternships">0</h2>
+                    <p>Total Internships</p>
+                </div>
+
+            </article>
+
+
+            <article class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <div>
+                    <h2 id="totalApplications">0</h2>
+                    <p>Applications</p>
+                </div>
+
+            </article>
+
+        </section>
+
+
+        <!-- =========================
+             STUDENT MANAGEMENT
+        ========================== -->
+
+        <section class="card">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        Student Management
+                    </span>
+
+                    <h2>
+                        Registered Students
+                    </h2>
+
+                </div>
+
+                <span
+                    class="count-badge"
+                    id="studentCount"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="filter-box">
+
+                <label
+                    for="studentSearch"
+                    class="visually-hidden"
+                >
+                    Search students
+                </label>
+
+                <input
+                    type="search"
+                    id="studentSearch"
+                    placeholder="Search by name, email, course or mobile"
+                    autocomplete="off"
+                >
+
+
+                <label
+                    for="studentStatusFilter"
+                    class="visually-hidden"
+                >
+                    Filter students by status
+                </label>
+
+                <select id="studentStatusFilter">
+
+                    <option value="all">
+                        All Students
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Verified">
+                        Verified
+                    </option>
+
+                    <option value="Rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                class="table-wrapper"
+                id="studentTableWrapper"
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="studentTableBody">
+
+                        <!-- Student rows JavaScript से आएंगी -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <p
+                class="empty-message"
+                id="noStudentsMessage"
+                hidden
+            >
+                No student account is available.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             INTERNSHIP APPROVAL
+        ========================== -->
+
+        <section class="card">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        Internship Approval
+                    </span>
+
+                    <h2>
+                        Industry Internship Postings
+                    </h2>
+
+                </div>
+
+                <span
+                    class="count-badge"
+                    id="internshipCount"
+                >
+                    1
+                </span>
+
+            </div>
+
+
+            <div class="filter-box">
+
+                <label
+                    for="internshipSearch"
+                    class="visually-hidden"
+                >
+                    Search internships
+                </label>
+
+                <input
+                    type="search"
+                    id="internshipSearch"
+                    placeholder="Search internship, company or category"
+                    autocomplete="off"
+                >
+
+
+                <label
+                    for="internshipStatusFilter"
+                    class="visually-hidden"
+                >
+                    Filter internships by status
+                </label>
+
+                <select id="internshipStatusFilter">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Approved">
+                        Approved
+                    </option>
+
+                    <option value="Rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                id="instituteInternships"
+                class="internship-list"
+            >
+
+                <!-- Internship cards JavaScript से आएंगे -->
+
+            </div>
+
+
+            <p
+                class="empty-message"
+                id="noInternshipsMessage"
+                hidden
+            >
+                No internship posting is available.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             APPLICATION TRACKING
+        ========================== -->
+
+        <section class="card">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        Application Tracking
+                    </span>
+
+                    <h2>
+                        Student Applications
+                    </h2>
+
+                </div>
+
+                <span
+                    class="count-badge"
+                    id="applicationCount"
+                >
+                    0
+                </span>
+
+            </div>
+
+
+            <div class="filter-box">
+
+                <label
+                    for="applicationSearch"
+                    class="visually-hidden"
+                >
+                    Search applications
+                </label>
+
+                <input
+                    type="search"
+                    id="applicationSearch"
+                    placeholder="Search student, company or internship"
+                    autocomplete="off"
+                >
+
+
+                <label
+                    for="applicationStatusFilter"
+                    class="visually-hidden"
+                >
+                    Filter applications by status
+                </label>
+
+                <select id="applicationStatusFilter">
+
+                    <option value="all">
+                        All Status
+                    </option>
+
+                    <option value="Pending">
+                        Pending
+                    </option>
+
+                    <option value="Shortlisted">
+                        Shortlisted
+                    </option>
+
+                    <option value="Selected">
+                        Selected
+                    </option>
+
+                    <option value="Rejected">
+                        Rejected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div
+                class="table-wrapper"
+                id="applicationTableWrapper"
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th scope="col">Student</th>
+                            <th scope="col">Internship</th>
+                            <th scope="col">Company</th>
+                            <th scope="col">Course</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Details</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="applicationTableBody">
+
+                        <!-- Application rows JavaScript से आएंगी -->
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <p
+                class="empty-message"
+                id="noApplicationsMessage"
+                hidden
+            >
+                No student application is available.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         STUDENT DETAILS MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="studentDetailsModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="studentModalTitle"
+        hidden
+    >
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                class="close-modal"
+                onclick="closeStudentDetails()"
+                aria-label="Close student details"
+            >
+                ×
+            </button>
+
+            <h2 id="studentModalTitle">
+                Student Details
+            </h2>
+
+            <div id="studentDetails"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         APPLICATION DETAILS MODAL
+    ========================== -->
+
+    <div
+        class="modal"
+        id="applicationDetailsModal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="applicationModalTitle"
+        hidden
+    >
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                class="close-modal"
+                onclick="closeApplicationDetails()"
+                aria-label="Close application details"
+            >
+                ×
+            </button>
+
+            <h2 id="applicationModalTitle">
+                Application Details
+            </h2>
+
+            <div id="applicationDetails"></div>
+
+        </div>
+
+    </div>
+
+
+    <noscript>
+
+        <p class="javascript-warning">
+            JavaScript is required to use the Institute Dashboard.
+        </p>
+
+    </noscript>
+
+
+    <!-- पहले authentication file load होगी -->
+
+    <script src="./js/mini7.js"></script>
+
+    <!-- फिर institute dashboard की file -->
+
+    <script src="./institute.js"></script>
+
+</body>
+
+</html>
+```

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | Prashikshan</title>
+
+    <link
+        rel="stylesheet"
+        href="login.css"
+    >
+
+</head>
+
+
+<body>
+
+    <main class="auth-container">
+
+        <!-- Login Illustration -->
+
+        <div class="login-image">
+
+            <img
+                src="images/login-illustration.png"
+                alt="Prashikshan Login Illustration"
+                onerror="this.style.display='none'"
+            >
+
+        </div>
+
+
+        <!-- Heading -->
+
+        <h2>
+            Welcome Back
+        </h2>
+
+        <p class="auth-subtitle">
+            Login to continue your Prashikshan account
+        </p>
+
+
+        <!-- Login Form -->
+
+        <form
+            id="loginForm"
+            autocomplete="off"
+            novalidate
+        >
+
+            <!-- Email / Mobile -->
+
+            <div class="form-group">
+
+                <label for="loginId">
+                    Email or Mobile Number
+                </label>
+
+                <input
+                    type="text"
+                    id="loginId"
+                    name="login_identifier"
+                    placeholder="Enter email or mobile number"
+                    autocomplete="off"
+                    autocapitalize="none"
+                    spellcheck="false"
+                    required
+                >
+
+                <small
+                    id="loginIdError"
+                    class="error-message"
+                ></small>
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="form-group">
+
+                <label for="loginPassword">
+                    Password
+                </label>
+
+                <div class="password-box">
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        name="login_password"
+                        placeholder="Enter password"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        class="show-password"
+                        id="showPasswordButton"
+                        onclick="togglePassword()"
+                    >
+                        Show
+                    </button>
+
+                </div>
+
+                <small
+                    id="loginPasswordError"
+                    class="error-message"
+                ></small>
+
+            </div>
+
+
+            <!-- Remember / Forgot -->
+
+            <div class="form-options">
+
+                <label>
+
+                    <input
+                        type="checkbox"
+                        id="remember"
+                        name="remember"
+                    >
+
+                    Remember me
+
+                </label>
+
+
+                <a href="forgot-password.html">
+                    Forgot Password?
+                </a>
+
+            </div>
+
+
+            <!-- Login Message -->
+
+            <div
+                id="loginMessage"
+                class="login-message"
+                aria-live="polite"
+            ></div>
+
+
+            <!-- Login Button -->
+
+            <button
+                type="submit"
+                class="auth-btn"
+                id="loginButton"
+            >
+                Login
+            </button>
+
+        </form>
+
+
+        <!-- Register -->
+
+        <p class="auth-switch">
+
+            Don't have an account?
+
+            <a href="register.html">
+                Register
+            </a>
+
+        </p>
+
+    </main>
+
+
+    <!-- Existing Login JS -->
+
+    <script src="login.js"></script>
+
+</body>
+
+</html>
