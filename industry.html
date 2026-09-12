@@ -2,1179 +2,1891 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Prashikshan | Industry Portal</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="industry.css">
+    <title>
+        Prashikshan | Industry Portal
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="industry.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- =========================================
-         NAVBAR
-    ========================================== -->
 
-    <header class="industry-navbar">
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
 
-        <div class="industry-nav-container">
+<header class="industry-navbar">
 
-            <a href="index.html" class="industry-logo">
+    <div class="industry-nav-container">
 
-                <div class="industry-logo-icon">
-                    🎓
-                </div>
+        <a
+            href="index.html"
+            class="industry-logo"
+        >
 
-                <div>
-                    <strong>PRASHIKSHAN</strong>
-                    <span>Learn • Train • Grow</span>
-                </div>
+            <div class="industry-logo-icon">
+                🎓
+            </div>
 
+            <div>
+
+                <strong>
+                    PRASHIKSHAN
+                </strong>
+
+                <span>
+                    Learn • Train • Grow
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <nav class="industry-nav-links">
+
+            <a href="#dashboard">
+                Dashboard
             </a>
 
+            <a href="#internships">
+                Internships
+            </a>
 
-            <nav class="industry-nav-links">
+            <a href="#applications">
+                Applications
+            </a>
 
-                <a href="index.html">Home</a>
+            <a href="#shortlisted">
+                Shortlisted
+            </a>
 
-                <a href="#dashboard">Dashboard</a>
+            <a href="#collaboration">
+                Institute Collaboration
+            </a>
 
-                <a href="#internships">Internships</a>
-
-                <a href="#companies">Companies</a>
-
-                <a href="#talent">Talent</a>
-
-                <a href="#contact">Contact</a>
-
-            </nav>
+        </nav>
 
 
-            <div class="industry-user">
+        <div class="industry-user">
 
-                <span id="industryUserName">
-                    Industry
-                </span>
+            <span id="industryUserName">
+                Industry
+            </span>
+
+            <button
+                type="button"
+                onclick="logoutUser()"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO / DASHBOARD
+====================================================== -->
+
+<section
+    id="dashboard"
+    class="industry-hero"
+>
+
+    <div class="industry-hero-container">
+
+
+        <div class="industry-hero-text">
+
+            <span class="hero-badge">
+                🏢 INDUSTRY PORTAL
+            </span>
+
+
+            <h1>
+
+                Hire
+                <span>Skilled Students</span>
+
+                & Build
+
+                <span>Your Future Workforce</span>
+
+            </h1>
+
+
+            <p>
+
+                Post internship opportunities, connect with
+                institutes, receive student applications,
+                conduct assessments and hire talented students
+                through Prashikshan.
+
+            </p>
+
+
+            <div class="hero-buttons">
 
                 <button
-                    type="button"
-                    onclick="logoutUser()"
+                    class="primary-btn"
+                    onclick="openInternshipForm()"
                 >
-                    Logout
+                    + Post Internship
                 </button>
+
+
+                <a
+                    href="#applications"
+                    class="secondary-btn"
+                >
+                    View Applications
+                </a>
 
             </div>
 
         </div>
 
-    </header>
 
 
-    <!-- =========================================
-         HERO / DASHBOARD
-    ========================================== -->
+        <div class="industry-hero-card">
 
-    <section
-        id="dashboard"
-        class="industry-hero"
+            <div class="hero-card-icon">
+                 <div class="hero-card-icon">
+                🚀
+            </div>
+            </div>
+
+            <h2>
+                Industry Recruitment
+            </h2>
+
+            <p>
+
+                Find eligible students, conduct
+                assessments and offer paid or unpaid
+                internship opportunities.
+
+            </p>
+
+
+            <div class="industry-mini-stats">
+
+                <div>
+
+                    <strong id="internshipCount">
+                        3
+                    </strong>
+
+                    <span>
+                        Internships
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong id="applicationCount">
+                        3
+                    </strong>
+
+                    <span>
+                        Applications
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong id="shortlistedCount">
+                        1
+                    </strong>
+
+                    <span>
+                        Shortlisted
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INDUSTRY SERVICES
+====================================================== -->
+
+<section class="industry-section">
+
+    <div class="section-heading">
+
+        <span>
+            INDUSTRY SERVICES
+        </span>
+
+        <h2>
+
+            Manage Your
+
+            <strong>
+                Recruitment
+            </strong>
+
+        </h2>
+
+        <p>
+
+            Everything an industry needs to recruit
+            students through Prashikshan.
+
+        </p>
+
+    </div>
+
+
+    <div class="service-grid">
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                📢
+            </div>
+
+            <h3>
+                Post Internship
+            </h3>
+
+            <p>
+
+                Create paid or unpaid internship
+                opportunities for students.
+
+            </p>
+
+            <button
+                onclick="openInternshipForm()"
+            >
+                Post Opportunity →
+            </button>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                👨‍🎓
+            </div>
+
+            <h3>
+                Student Applications
+            </h3>
+
+            <p>
+
+                Review students who apply for
+                your internship programs.
+
+            </p>
+
+            <a href="#applications">
+                Review Applications →
+            </a>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                📝
+            </div>
+
+            <h3>
+                Assessment & Exam
+            </h3>
+
+            <p>
+
+                Conduct technical tests and
+                assessments for shortlisted students.
+
+            </p>
+
+            <a href="#shortlisted">
+                Manage Assessment →
+            </a>
+
+        </div>
+
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                🤝
+            </div>
+
+            <h3>
+                Institute Collaboration
+            </h3>
+
+            <p>
+
+                Collaborate with colleges for
+                internship and campus hiring programs.
+
+            </p>
+
+            <a href="#collaboration">
+                Collaborate →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INTERNSHIP OPPORTUNITIES
+====================================================== -->
+
+<section
+    id="internships"
+    class="industry-section internships-section"
+>
+
+    <div class="section-heading">
+
+        <span>
+            INDUSTRY OPPORTUNITIES
+        </span>
+
+        <h2>
+
+            Internship
+
+            <strong>
+                Opportunities
+            </strong>
+
+        </h2>
+
+        <p>
+
+            Industry partners can publish paid and
+            unpaid internship opportunities.
+
+        </p>
+
+    </div>
+
+
+    <div class="post-internship-box">
+
+        <div>
+
+            <span class="small-label">
+                FOR INDUSTRY
+            </span>
+
+            <h2>
+                Looking for talented students?
+            </h2>
+
+            <p>
+
+                Create an internship opportunity and
+                receive applications from eligible students.
+
+            </p>
+
+        </div>
+
+
+        <button
+            class="primary-btn"
+            onclick="openInternshipForm()"
+        >
+            + Post Internship
+        </button>
+
+    </div>
+
+
+    <div
+        id="internshipList"
+        class="internship-grid"
     >
 
-        <div class="industry-hero-container">
 
-            <div class="industry-hero-text">
+        <!-- TCS -->
 
-                <span class="hero-badge">
-                    🏢 INDUSTRY PORTAL
+        <div class="internship-card">
+
+            <div class="company-logo tcs">
+                TCS
+            </div>
+
+
+            <div class="internship-content">
+
+                <span class="internship-tag">
+                    SOFTWARE DEVELOPMENT
                 </span>
 
-                <h1>
-                    Discover
-                    <span>Talent</span>
-                    & Build
-                    <span>Future</span>
-                </h1>
-
-                <p>
-                    Connect with talented students, post
-                    internship opportunities and discover
-                    skilled candidates through Prashikshan.
-                </p>
-
-
-                <div class="hero-buttons">
-
-                    <a
-                        href="#internships"
-                        class="primary-btn"
-                    >
-                        View Internships
-                    </a>
-
-                    <a
-                        href="#talent"
-                        class="secondary-btn"
-                    >
-                        Find Talent
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="industry-hero-card">
-
-                <div class="hero-card-icon">
-                    🚀
-                </div>
-
-                <h2>
-                    Industry Growth
-                </h2>
-
-                <p>
-                    Build your future workforce by
-                    connecting with students and
-                    educational institutes.
-                </p>
-
-
-                <div class="industry-mini-stats">
-
-                    <div>
-                        <strong>8+</strong>
-                        <span>Companies</span>
-                    </div>
-
-                    <div>
-                        <strong>24+</strong>
-                        <span>Opportunities</span>
-                    </div>
-
-                    <div>
-                        <strong>100%</strong>
-                        <span>Career Focus</span>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
-         QUICK ACTIONS
-    ========================================== -->
-
-    <section class="industry-section">
-
-        <div class="section-heading">
-
-            <span>
-                INDUSTRY SERVICES
-            </span>
-
-            <h2>
-                Manage Your
-                <strong>Opportunities</strong>
-            </h2>
-
-            <p>
-                Everything an industry needs to
-                connect with students.
-            </p>
-
-        </div>
-
-
-        <div class="service-grid">
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    📢
-                </div>
-
                 <h3>
-                    Post Internship
+                    Software Development Intern
                 </h3>
 
-                <p>
-                    Create internship opportunities
-                    for talented students.
+                <p class="company-name">
+                    Tata Consultancy Services
                 </p>
+
+
+                <div class="internship-info">
+
+                    <span>
+                        📍 India
+                    </span>
+
+                    <span>
+                        💻 Java / Python
+                    </span>
+
+                    <span>
+                        🎓 B.Tech CSE
+                    </span>
+
+                </div>
+
+
+                <div class="internship-meta">
+
+                    <span>
+                        💰 Paid
+                    </span>
+
+                    <span>
+                        ⏱ 6 Months
+                    </span>
+
+                </div>
+
+
+                <p>
+
+                    Work on real-world software
+                    development projects.
+
+                </p>
+
 
                 <button
-                    onclick="postInternship()"
+                    class="apply-btn"
+                    onclick="viewInternship(1)"
                 >
-                    Post Opportunity →
+                    View Opportunity →
                 </button>
 
             </div>
 
+        </div>
 
-            <div class="service-card">
 
-                <div class="service-icon">
-                    🔎
-                </div>
+
+        <!-- INFOSYS -->
+
+        <div class="internship-card">
+
+            <div class="company-logo infosys">
+                INFOSYS
+            </div>
+
+
+            <div class="internship-content">
+
+                <span class="internship-tag">
+                    WEB DEVELOPMENT
+                </span>
 
                 <h3>
-                    Find Students
+                    Web Development Intern
+                </h3>
+
+                <p class="company-name">
+                    Infosys
+                </p>
+
+
+                <div class="internship-info">
+
+                    <span>
+                        📍 India
+                    </span>
+
+                    <span>
+                        🌐 HTML / CSS / JS
+                    </span>
+
+                    <span>
+                        🎓 B.Tech / BCA
+                    </span>
+
+                </div>
+
+
+                <div class="internship-meta">
+
+                    <span>
+                        💼 Unpaid
+                    </span>
+
+                    <span>
+                        ⏱ 3 Months
+                    </span>
+
+                </div>
+
+
+                <p>
+
+                    Develop frontend applications
+                    and learn modern web development.
+
+                </p>
+
+
+                <button
+                    class="apply-btn"
+                    onclick="viewInternship(2)"
+                >
+                    View Opportunity →
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- AI ML -->
+
+        <div class="internship-card">
+
+            <div class="company-logo google">
+                AI
+            </div>
+
+
+            <div class="internship-content">
+
+                <span class="internship-tag">
+                    AI / ML
+                </span>
+
+                <h3>
+                    AI / ML Intern
+                </h3>
+
+                <p class="company-name">
+                    Technology Partner
+                </p>
+
+
+                <div class="internship-info">
+
+                    <span>
+                        📍 India / Remote
+                    </span>
+
+                    <span>
+                        🤖 Python / ML
+                    </span>
+
+                    <span>
+                        🎓 CSE / AIML
+                    </span>
+
+                </div>
+
+
+                <div class="internship-meta">
+
+                    <span>
+                        💰 Paid
+                    </span>
+
+                    <span>
+                        ⏱ 4 Months
+                    </span>
+
+                </div>
+
+
+                <p>
+
+                    Work with machine learning
+                    datasets and AI applications.
+
+                </p>
+
+
+                <button
+                    class="apply-btn"
+                    onclick="viewInternship(3)"
+                >
+                    View Opportunity →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     ELIGIBILITY CRITERIA
+====================================================== -->
+
+<section class="industry-section criteria-section">
+
+    <div class="section-heading">
+
+        <span>
+            STUDENT ELIGIBILITY
+        </span>
+
+        <h2>
+
+            Define
+
+            <strong>
+                Selection Criteria
+            </strong>
+
+        </h2>
+
+        <p>
+
+            Industries can define eligibility
+            requirements before accepting applications.
+
+        </p>
+
+    </div>
+
+
+    <div class="criteria-grid">
+
+
+        <div class="criteria-card">
+
+            <div class="criteria-icon">
+                🎓
+            </div>
+
+            <h3>
+                Education
+            </h3>
+
+            <p>
+                Select eligible degree and branch.
+            </p>
+
+            <span>
+                B.Tech CSE / IT
+            </span>
+
+        </div>
+
+
+
+        <div class="criteria-card">
+
+            <div class="criteria-icon">
+                📊
+            </div>
+
+            <h3>
+                Academic Score
+            </h3>
+
+            <p>
+                Set minimum CGPA or percentage.
+            </p>
+
+            <span>
+                Minimum CGPA: 6.0
+            </span>
+
+        </div>
+
+
+
+        <div class="criteria-card">
+
+            <div class="criteria-icon">
+                💻
+            </div>
+
+            <h3>
+                Technical Skills
+            </h3>
+
+            <p>
+                Define required technical skills.
+            </p>
+
+            <span>
+                Java • Python • DSA • SQL
+            </span>
+
+        </div>
+
+
+
+        <div class="criteria-card">
+
+            <div class="criteria-icon">
+                📅
+            </div>
+
+            <h3>
+                Duration
+            </h3>
+
+            <p>
+                Specify internship duration.
+            </p>
+
+            <span>
+                3 – 6 Months
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     STUDENT APPLICATIONS
+====================================================== -->
+
+<section
+    id="applications"
+    class="industry-section applications-section"
+>
+
+    <div class="section-heading">
+
+        <span>
+            STUDENT APPLICATIONS
+        </span>
+
+        <h2>
+
+            Review
+
+            <strong>
+                Applications
+            </strong>
+
+        </h2>
+
+        <p>
+
+            Students from colleges can apply for
+            internship opportunities through Prashikshan.
+
+        </p>
+
+    </div>
+
+
+    <div class="application-filters">
+
+        <select
+            id="applicationFilter"
+            onchange="filterApplications()"
+        >
+
+            <option value="all">
+                All Applications
+            </option>
+
+            <option value="pending">
+                Pending
+            </option>
+
+            <option value="shortlisted">
+                Shortlisted
+            </option>
+
+            <option value="rejected">
+                Rejected
+            </option>
+
+            <option value="selected">
+                Selected
+            </option>
+
+        </select>
+
+    </div>
+
+
+    <div
+        id="studentApplications"
+        class="student-application-list"
+    >
+
+
+        <!-- STUDENT 1 -->
+
+        <div
+            class="student-application"
+            data-status="pending"
+        >
+
+            <div class="student-avatar">
+                👨‍🎓
+            </div>
+
+
+            <div class="student-details">
+
+                <h3>
+                    Rahul Kumar
                 </h3>
 
                 <p>
-                    Search students based on skills,
-                    qualification and projects.
+                    B.Tech CSE • 7.4 CGPA
                 </p>
 
-                <a href="#talent">
-                    Search Talent →
-                </a>
 
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    📋
-                </div>
-
-                <h3>
-                    Applications
-                </h3>
-
-                <p>
-                    Manage internship applications
-                    received from students.
-                </p>
-
-                <a href="#applications">
-                    View Applications →
-                </a>
-
-            </div>
-
-
-            <div class="service-card">
-
-                <div class="service-icon">
-                    🤝
-                </div>
-
-                <h3>
-                    Institute Collaboration
-                </h3>
-
-                <p>
-                    Collaborate with institutes for
-                    student internship programs.
-                </p>
-
-                <a href="#collaboration">
-                    Collaborate →
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
-         INTERNSHIPS
-    ========================================== -->
-
-    <section
-        id="internships"
-        class="industry-section internships-section"
-    >
-
-        <div class="section-heading">
-
-            <span>
-                INTERNSHIP OPPORTUNITIES
-            </span>
-
-            <h2>
-                Top
-                <strong>Industry Opportunities</strong>
-            </h2>
-
-            <p>
-                Explore internship programs from
-                leading technology and consulting companies.
-            </p>
-
-        </div>
-
-
-        <div class="internship-grid">
-
-
-            <!-- 1 TCS -->
-
-            <div class="internship-card">
-
-                <div class="company-logo tcs">
-                    TCS
-                </div>
-
-                <div class="internship-content">
-
-                    <span class="internship-tag">
-                        TECHNOLOGY
-                    </span>
-
-                    <h3>
-                        Research Internship
-                    </h3>
-
-                    <p class="company-name">
-                        Tata Consultancy Services
-                    </p>
-
-                    <div class="internship-info">
-
-                        <span>📍 India</span>
-
-                        <span>💻 Computer Science</span>
-
-                        <span>🎓 Final Year / PG</span>
-
-                    </div>
-
-                    <p>
-                        Research and industry-scale
-                        technology projects with TCS.
-                    </p>
-
-                    <a
-                        href="https://www.tcs.com/careers/india/internship"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="apply-btn"
-                    >
-                        Apply Now →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- 2 INFOSYS -->
-
-            <div class="internship-card">
-
-                <div class="company-logo infosys">
-                    INFOSYS
-                </div>
-
-                <div class="internship-content">
-
-                    <span class="internship-tag">
-                        SOFTWARE
-                    </span>
-
-                    <h3>
-                        Student Internship
-                    </h3>
-
-                    <p class="company-name">
-                        Infosys
-                    </p>
-
-                    <div class="internship-info">
-
-                        <span>📍 India</span>
-
-                        <span>💻 IT / CS</span>
-
-                        <span>🎓 Students</span>
-
-                    </div>
-
-                    <p>
-                        Explore technology projects,
-                        digital innovation and learning.
-                    </p>
-
-                    <a
-                        href="https://www.infosys.com/careers/internships.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="apply-btn"
-                    >
-                        Apply Now →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- 3 WIPRO -->
-
-            <div class="internship-card">
-
-                <div class="company-logo wipro">
-                    WIPRO
-                </div>
-
-                <div class="internship-content">
-
-                    <span class="internship-tag">
-                        TECHNOLOGY
-                    </span>
-
-                    <h3>
-                        Early Career Internship
-                    </h3>
-
-                    <p class="company-name">
-                        Wipro
-                    </p>
-
-                    <div class="internship-info">
-
-                        <span>📍 India</span>
-
-                        <span>💻 Technology</span>
-
-                        <span>🎓 Students</span>
-
-                    </div>
-
-                    <p>
-                        Gain practical experience through
-                        early career and internship programs.
-                    </p>
-
-                    <a
-                        href="https://careers.wipro.com/content/Early-Careers/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="apply-btn"
-                    >
-                        Apply Now →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- 4 ACCENTURE -->
-
-            <div class="internship-card">
-
-                <div class="company-logo accenture">
-                    ACN
-                </div>
-
-                <div class="internship-content">
-
-                    <span class="internship-tag">
-                        CONSULTING
-                    </span>
-
-                    <h3>
-                        Student Internship
-                    </h3>
-
-                    <p class="company-name">
-                        Accenture
-                    </p>
-
-                    <div class="internship-info">
-
-                        <span>📍 India</span>
-
-                        <span>💻 Technology</span>
-
-                        <span>🎓 Undergraduate</span>
-
-                    </div>
-
-                    <p>
-                        Work on real-world technology
-                        and innovation projects.
-                    </p>
-
-                    <a
-                        href="https://www.accenture.com/in-en/careers/life-at-accenture/internships-students"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="apply-btn"
-                    >
-                        Apply Now →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- 5 AMAZON -->
-
-            <div class="internship-card">
-
-                <div class="company-logo amazon">
-                    amazon
-                </div>
-
-                <div class="internship-content">
-
-                    <span class="internship-tag">
-                        TECHNOLOGY
-                    </span>
-
-                    <h3>
-                        Software Development Internship
-                    </h3>
-
-                    <p class="company-name">
-                        Amazon
-                    </p>
-
-                    <div class="internship-info">
-
-                        <span>📍 India / Global</span>
-
-                        <span>💻 Software</span>
-
-                        <span>🎓 Students</span>
-
-                    </div>
-
-                    <p>
-                        Build real-world products and
-                        develop engineering skills.
-                    </p>
-
-                    <a
-                        href="https://www.amazon.jobs/content/en/career-programs/university/internships-for-students/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="apply-btn"
-                    >
-                        Apply Now →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- 6 GOOGLE -->
-
-            <div class="internship-card">
-
-                <div class="company-logo google">
-                    G
-                </div>
-
-                <div class="internship-content">
-
-                    <span class="internship-tag">
-                        AI / SOFTWARE
-                    </span>
-
-                    <h3>
-                        Google Student Internship
-                    </h3>
-
-                    <p class="company-name">
-                        Google
-                    </p>
-
-                    <div class="internship-info">
-
-                        <span>📍 India / Global</span>
-
-                        <span>💻 Technology</span>
-
-                        <span>🎓 Students</span>
-
-                    </div>
-
-                    <p>
-                        Explore internships and early-career
-                        opportunities at Google.
-                    </p>
-
-                    <a
-                        href="https://www.google.com/about/careers/applications/students/internships/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="apply-btn"
-                    >
-                        Apply Now →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- 7 DELOITTE -->
-
-            <div class="internship-card">
-
-                <div class="company-logo deloitte">
-                    D
-                </div>
-
-                <div class="internship-content">
-
-                    <span class="internship-tag">
-                        CONSULTING
-                    </span>
-
-                    <h3>
-                        Technology Internship
-                    </h3>
-
-                    <p class="company-name">
-                        Deloitte
-                    </p>
-
-                    <div class="internship-info">
-
-                        <span>📍 India</span>
-
-                        <span>💻 Technology</span>
-
-                        <span>🎓 Students</span>
-
-                    </div>
-
-                    <p>
-                        Gain practical skills, mentorship
-                        and professional experience.
-                    </p>
-
-                    <a
-                        href="https://www.deloitte.com/in/en/careers/explore-your-fit/students.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="apply-btn"
-                    >
-                        Apply Now →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-            <!-- 8 IBM -->
-
-            <div class="internship-card">
-
-                <div class="company-logo ibm">
-                    IBM
-                </div>
-
-                <div class="internship-content">
-
-                    <span class="internship-tag">
-                        AI / CLOUD
-                    </span>
-
-                    <h3>
-                        Software & Cloud Internship
-                    </h3>
-
-                    <p class="company-name">
-                        IBM
-                    </p>
-
-                    <div class="internship-info">
-
-                        <span>📍 India / Global</span>
-
-                        <span>☁️ Cloud / AI</span>
-
-                        <span>🎓 Students</span>
-
-                    </div>
-
-                    <p>
-                        Explore opportunities in software,
-                        cloud, AI and emerging technologies.
-                    </p>
-
-                    <a
-                        href="https://www.ibm.com/careers/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="apply-btn"
-                    >
-                        Apply Now →
-                    </a>
-
-                </div>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================================
-         TALENT DISCOVERY
-    ========================================== -->
-
-    <section
-        id="talent"
-        class="industry-section talent-section"
-    >
-
-        <div class="section-heading">
-
-            <span>
-                TALENT DISCOVERY
-            </span>
-
-            <h2>
-                Find
-                <strong>Skilled Students</strong>
-            </h2>
-
-            <p>
-                Discover students based on their
-                technical skills and academic background.
-            </p>
-
-        </div>
-
-
-        <div class="talent-grid">
-
-            <div class="talent-card">
-
-                <div class="talent-avatar">
-                    👨‍💻
-                </div>
-
-                <div>
-
-                    <h3>
-                        Software Developer
-                    </h3>
-
-                    <p>
-                        Java • DSA • SQL • Spring Boot
-                    </p>
+                <div class="student-skills">
 
                     <span>
-                        B.Tech CSE
+                        Java
                     </span>
-
-                </div>
-
-                <button>
-                    View Profile
-                </button>
-
-            </div>
-
-
-            <div class="talent-card">
-
-                <div class="talent-avatar">
-                    👩‍💻
-                </div>
-
-                <div>
-
-                    <h3>
-                        Frontend Developer
-                    </h3>
-
-                    <p>
-                        HTML • CSS • JavaScript • React
-                    </p>
 
                     <span>
-                        B.Tech / BCA
+                        DSA
                     </span>
-
-                </div>
-
-                <button>
-                    View Profile
-                </button>
-
-            </div>
-
-
-            <div class="talent-card">
-
-                <div class="talent-avatar">
-                    🤖
-                </div>
-
-                <div>
-
-                    <h3>
-                        AI / ML Student
-                    </h3>
-
-                    <p>
-                        Python • ML • Data Science
-                    </p>
 
                     <span>
-                        B.Tech CSE / AIML
+                        SQL
+                    </span>
+
+                    <span>
+                        Spring Boot
                     </span>
 
                 </div>
 
-                <button>
-                    View Profile
-                </button>
+
+                <small>
+                    Applied for:
+                    Software Development Intern
+                </small>
 
             </div>
 
-        </div>
 
-    </section>
-
-
-    <!-- =========================================
-         APPLICATIONS
-    ========================================== -->
-
-    <section
-        id="applications"
-        class="industry-section applications-section"
-    >
-
-        <div class="section-heading">
-
-            <span>
-                APPLICATION MANAGEMENT
-            </span>
-
-            <h2>
-                Internship
-                <strong>Applications</strong>
-            </h2>
-
-            <p>
-                Manage applications received from
-                students for your internship programs.
-            </p>
-
-        </div>
-
-
-        <div class="application-box">
-
-            <div class="application-row">
-
-                <div class="application-student">
-                    <div class="small-avatar">
-                        👨‍🎓
-                    </div>
-
-                    <div>
-                        <strong>
-                            Student Applicant
-                        </strong>
-
-                        <span>
-                            Software Development Intern
-                        </span>
-                    </div>
-                </div>
+            <div class="application-actions">
 
                 <span class="status pending">
                     Pending
                 </span>
 
-                <button>
-                    Review
+
+                <button
+                    onclick="shortlistStudent(
+                        this,
+                        'Rahul Kumar'
+                    )"
+                >
+                    Shortlist
+                </button>
+
+
+                <button
+                    class="danger-btn"
+                    onclick="rejectStudent(this)"
+                >
+                    Reject
                 </button>
 
             </div>
 
+        </div>
 
-            <div class="application-row">
 
-                <div class="application-student">
-                    <div class="small-avatar">
-                        👩‍🎓
-                    </div>
 
-                    <div>
-                        <strong>
-                            Student Applicant
-                        </strong>
+        <!-- STUDENT 2 -->
 
-                        <span>
-                            Frontend Development Intern
-                        </span>
-                    </div>
+        <div
+            class="student-application"
+            data-status="pending"
+        >
+
+            <div class="student-avatar">
+                👩‍🎓
+            </div>
+
+
+            <div class="student-details">
+
+                <h3>
+                    Priya Singh
+                </h3>
+
+                <p>
+                    B.Tech CSE • 8.1 CGPA
+                </p>
+
+
+                <div class="student-skills">
+
+                    <span>
+                        Python
+                    </span>
+
+                    <span>
+                        Machine Learning
+                    </span>
+
+                    <span>
+                        SQL
+                    </span>
+
                 </div>
+
+
+                <small>
+                    Applied for:
+                    AI / ML Intern
+                </small>
+
+            </div>
+
+
+            <div class="application-actions">
+
+                <span class="status pending">
+                    Pending
+                </span>
+
+
+                <button
+                    onclick="shortlistStudent(
+                        this,
+                        'Priya Singh'
+                    )"
+                >
+                    Shortlist
+                </button>
+
+
+                <button
+                    class="danger-btn"
+                    onclick="rejectStudent(this)"
+                >
+                    Reject
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STUDENT 3 -->
+
+        <div
+            class="student-application"
+            data-status="shortlisted"
+        >
+
+            <div class="student-avatar">
+                👨‍🎓
+            </div>
+
+
+            <div class="student-details">
+
+                <h3>
+                    Ankit Verma
+                </h3>
+
+                <p>
+                    B.Tech CSE • 8.3 CGPA
+                </p>
+
+
+                <div class="student-skills">
+
+                    <span>
+                        Java
+                    </span>
+
+                    <span>
+                        React
+                    </span>
+
+                    <span>
+                        Node.js
+                    </span>
+
+                    <span>
+                        MongoDB
+                    </span>
+
+                </div>
+
+
+                <small>
+                    Applied for:
+                    Software Development Intern
+                </small>
+
+            </div>
+
+
+            <div class="application-actions">
 
                 <span class="status shortlisted">
                     Shortlisted
                 </span>
 
-                <button>
-                    Review
+
+                <button
+                    onclick="scheduleExam(
+                        'Ankit Verma'
+                    )"
+                >
+                    Schedule Exam
                 </button>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- =========================================
-         COLLABORATION
-    ========================================== -->
 
-    <section
-        id="collaboration"
-        class="collaboration-section"
-    >
+<!-- =====================================================
+     SHORTLISTED STUDENTS
+====================================================== -->
 
-        <div class="collaboration-content">
+<section
+    id="shortlisted"
+    class="industry-section shortlisted-section"
+>
 
-            <span>
-                INDUSTRY • INSTITUTE • STUDENTS
-            </span>
+    <div class="section-heading">
 
-            <h2>
-                Build Your Future Workforce
-                With Prashikshan
-            </h2>
+        <span>
+            RECRUITMENT PROCESS
+        </span>
+
+        <h2>
+
+            Shortlisted
+
+            <strong>
+                Candidates
+            </strong>
+
+        </h2>
+
+        <p>
+
+            Conduct technical tests and examinations
+            before final selection.
+
+        </p>
+
+    </div>
+
+
+    <div class="shortlisted-grid">
+
+
+        <!-- CANDIDATE -->
+
+        <div class="candidate-card">
+
+            <div class="candidate-header">
+
+                <div class="student-avatar">
+                    👨‍🎓
+                </div>
+
+                <div>
+
+                    <h3>
+                        Ankit Verma
+                    </h3>
+
+                    <p>
+                        Software Development Intern
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="candidate-status">
+
+                <span>
+                    CGPA: 8.3
+                </span>
+
+                <span>
+                    Java / React
+                </span>
+
+            </div>
+
+
+            <div class="exam-status">
+
+                <strong>
+                    Technical Assessment
+                </strong>
+
+                <span class="status exam-pending">
+                    Exam Pending
+                </span>
+
+            </div>
+
+
+            <button
+                class="primary-btn"
+                onclick="scheduleExam(
+                    'Ankit Verma'
+                )"
+            >
+                Schedule Examination
+            </button>
+
+        </div>
+
+
+
+        <!-- CANDIDATE -->
+
+        <div class="candidate-card">
+
+            <div class="candidate-header">
+
+                <div class="student-avatar">
+                    👩‍🎓
+                </div>
+
+                <div>
+
+                    <h3>
+                        Neha Sharma
+                    </h3>
+
+                    <p>
+                        AI / ML Intern
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="candidate-status">
+
+                <span>
+                    CGPA: 8.7
+                </span>
+
+                <span>
+                    Python / ML
+                </span>
+
+            </div>
+
+
+            <div class="exam-status">
+
+                <strong>
+                    Technical Assessment
+                </strong>
+
+                <span class="status exam-completed">
+                    Score: 86%
+                </span>
+
+            </div>
+
+
+            <button
+                class="primary-btn"
+                onclick="selectCandidate(
+                    'Neha Sharma'
+                )"
+            >
+                Select Candidate
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FINAL HIRING
+====================================================== -->
+
+<section class="industry-section hiring-section">
+
+    <div class="section-heading">
+
+        <span>
+            FINAL SELECTION
+        </span>
+
+        <h2>
+
+            Internship
+
+            <strong>
+                Hiring
+            </strong>
+
+        </h2>
+
+        <p>
+
+            Select the candidate and define
+            paid or unpaid internship terms.
+
+        </p>
+
+    </div>
+
+
+    <div class="hiring-box">
+
+
+        <div class="hiring-student">
+
+            <div class="student-avatar">
+                👩‍🎓
+            </div>
+
+            <div>
+
+                <h3>
+                    Neha Sharma
+                </h3>
+
+                <p>
+                    AI / ML Intern
+                </p>
+
+                <span>
+                    Examination Score: 86%
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="hiring-form">
+
+            <label>
+                Internship Type
+            </label>
+
+
+            <select
+                id="internshipPayment"
+            >
+
+                <option value="">
+                    Select Type
+                </option>
+
+                <option value="paid">
+                    Paid Internship
+                </option>
+
+                <option value="unpaid">
+                    Unpaid Internship
+                </option>
+
+            </select>
+
+
+            <label>
+                Stipend / Month
+            </label>
+
+
+            <input
+                type="number"
+                id="stipend"
+                placeholder="Example: 15000"
+            >
+
+
+            <label>
+                Duration
+            </label>
+
+
+            <select id="internshipDuration">
+
+                <option value="3">
+                    3 Months
+                </option>
+
+                <option value="6">
+                    6 Months
+                </option>
+
+                <option value="12">
+                    12 Months
+                </option>
+
+            </select>
+
+
+            <button
+                class="primary-btn"
+                onclick="confirmHiring()"
+            >
+                Confirm Hiring
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     INSTITUTE COLLABORATION
+====================================================== -->
+
+<section
+    id="collaboration"
+    class="industry-section collaboration-section"
+>
+
+    <div class="section-heading">
+
+        <span>
+            INDUSTRY • INSTITUTE
+        </span>
+
+        <h2>
+
+            Collaborate With
+
+            <strong>
+                Institutes
+            </strong>
+
+        </h2>
+
+        <p>
+
+            Connect with colleges to conduct internship
+            programs, campus drives and technical training.
+
+        </p>
+
+    </div>
+
+
+    <div class="collaboration-grid">
+
+
+        <div class="collaboration-card">
+
+            <div class="collaboration-icon">
+                🏫
+            </div>
+
+            <h3>
+                Institute Partnership
+            </h3>
 
             <p>
-                Collaborate with educational institutes,
-                discover skilled students and create
-                meaningful internship opportunities.
+
+                Partner with colleges and provide
+                internship opportunities to their students.
+
             </p>
 
-            <a
-                href="mailto:support@prashikshan.com"
-                class="primary-btn"
+            <button
+                onclick="sendInstituteRequest(
+                    'Institute of Engineering & Rural Technology'
+                )"
             >
-                Start Collaboration →
+                Send Collaboration Request →
+            </button>
+
+        </div>
+
+
+
+        <div class="collaboration-card">
+
+            <div class="collaboration-icon">
+                💼
+            </div>
+
+            <h3>
+                Campus Hiring
+            </h3>
+
+            <p>
+
+                Conduct campus recruitment drives
+                and hire eligible students.
+
+            </p>
+
+            <button
+                onclick="sendInstituteRequest(
+                    'Campus Hiring'
+                )"
+            >
+                Request Campus Drive →
+            </button>
+
+        </div>
+
+
+
+        <div class="collaboration-card">
+
+            <div class="collaboration-icon">
+                🧑‍🏫
+            </div>
+
+            <h3>
+                Industry Training
+            </h3>
+
+            <p>
+
+                Conduct workshops, seminars,
+                technical training and mentorship.
+
+            </p>
+
+            <button
+                onclick="sendInstituteRequest(
+                    'Industry Training'
+                )"
+            >
+                Propose Training →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     POST INTERNSHIP MODAL
+====================================================== -->
+
+<div
+    id="internshipModal"
+    class="modal"
+>
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            onclick="closeInternshipForm()"
+        >
+            ×
+        </button>
+
+
+        <span class="modal-label">
+            INDUSTRY OPPORTUNITY
+        </span>
+
+
+        <h2>
+            Post Internship
+        </h2>
+
+
+        <p>
+            Create an internship opportunity for
+            students on Prashikshan.
+        </p>
+
+
+        <form
+            id="internshipForm"
+            onsubmit="submitInternship(event)"
+        >
+
+
+            <label>
+                Internship Title
+            </label>
+
+            <input
+                id="jobTitle"
+                type="text"
+                placeholder="Software Developer Intern"
+                required
+            >
+
+
+            <label>
+                Department / Category
+            </label>
+
+            <select
+                id="jobCategory"
+                required
+            >
+
+                <option value="">
+                    Select Category
+                </option>
+
+                <option>
+                    Software Development
+                </option>
+
+                <option>
+                    Web Development
+                </option>
+
+                <option>
+                    Data Science
+                </option>
+
+                <option>
+                    AI / ML
+                </option>
+
+                <option>
+                    Cyber Security
+                </option>
+
+                <option>
+                    Cloud Computing
+                </option>
+
+                <option>
+                    Business / Management
+                </option>
+
+            </select>
+
+
+            <label>
+                Internship Type
+            </label>
+
+            <select
+                id="jobType"
+                required
+            >
+
+                <option value="">
+                    Select Type
+                </option>
+
+                <option value="Paid">
+                    Paid Internship
+                </option>
+
+                <option value="Unpaid">
+                    Unpaid Internship
+                </option>
+
+            </select>
+
+
+            <label>
+                Duration
+            </label>
+
+            <select
+                id="jobDuration"
+                required
+            >
+
+                <option>
+                    1 Month
+                </option>
+
+                <option>
+                    2 Months
+                </option>
+
+                <option>
+                    3 Months
+                </option>
+
+                <option>
+                    6 Months
+                </option>
+
+                <option>
+                    12 Months
+                </option>
+
+            </select>
+
+
+            <label>
+                Minimum CGPA
+            </label>
+
+            <input
+                id="minimumCGPA"
+                type="number"
+                step="0.1"
+                min="0"
+                max="10"
+                placeholder="6.0"
+                required
+            >
+
+
+            <label>
+                Eligible Branch
+            </label>
+
+            <input
+                id="eligibleBranch"
+                type="text"
+                placeholder="CSE, IT, AIML"
+                required
+            >
+
+
+            <label>
+                Required Skills
+            </label>
+
+            <input
+                id="requiredSkills"
+                type="text"
+                placeholder="Java, Python, SQL, DSA"
+                required
+            >
+
+
+            <label>
+                Location
+            </label>
+
+            <input
+                id="jobLocation"
+                type="text"
+                placeholder="Noida / Remote / India"
+                required
+            >
+
+
+            <label>
+                Internship Description
+            </label>
+
+            <textarea
+                id="jobDescription"
+                rows="4"
+                placeholder="Describe the internship..."
+                required
+            ></textarea>
+
+
+            <button
+                type="submit"
+                class="primary-btn full-btn"
+            >
+                Publish Internship →
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="industry-footer">
+
+    <div class="footer-grid">
+
+
+        <div>
+
+            <h3>
+                🎓 PRASHIKSHAN
+            </h3>
+
+            <p>
+
+                Connecting Students, Institutes
+                and Industries.
+
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>
+                INDUSTRY
+            </h3>
+
+            <a href="#internships">
+                Internship Opportunities
+            </a>
+
+            <a href="#applications">
+                Student Applications
+            </a>
+
+            <a href="#shortlisted">
+                Shortlisted Students
             </a>
 
         </div>
 
-    </section>
 
+        <div>
 
-    <!-- =========================================
-         FOOTER
-    ========================================== -->
+            <h3>
+                COLLABORATION
+            </h3>
 
-    <footer
-        id="contact"
-        class="industry-footer"
-    >
+            <a href="#collaboration">
+                Institute Partnership
+            </a>
 
-        <div class="footer-grid">
+            <a href="#collaboration">
+                Campus Hiring
+            </a>
 
-            <div>
-
-                <h3>
-                    🎓 PRASHIKSHAN
-                </h3>
-
-                <p>
-                    Connecting Students, Institutes
-                    and Industries.
-                </p>
-
-            </div>
-
-
-            <div>
-
-                <h3>
-                    QUICK LINKS
-                </h3>
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="#internships">
-                    Internships
-                </a>
-
-                <a href="#talent">
-                    Talent
-                </a>
-
-                <a href="#applications">
-                    Applications
-                </a>
-
-            </div>
-
-
-            <div>
-
-                <h3>
-                    INDUSTRY SERVICES
-                </h3>
-
-                <a href="#internships">
-                    Internship Opportunities
-                </a>
-
-                <a href="#talent">
-                    Talent Discovery
-                </a>
-
-                <a href="#collaboration">
-                    Institute Collaboration
-                </a>
-
-            </div>
-
-
-            <div>
-
-                <h3>
-                    CONTACT
-                </h3>
-
-                <p>
-                    📧 support@prashikshan.com
-                </p>
-
-                <p>
-                    📍 India
-                </p>
-
-                <p>
-                    🏢 Industry Portal
-                </p>
-
-            </div>
+            <a href="#collaboration">
+                Industry Training
+            </a>
 
         </div>
 
 
-        <div class="footer-bottom">
+        <div>
 
-            <span>
-                © 2026 Prashikshan.
-                All Rights Reserved.
-            </span>
+            <h3>
+                CONTACT
+            </h3>
 
-            <span>
-                Learn • Train • Grow
-            </span>
+            <p>
+                📧 support@prashikshan.com
+            </p>
+
+            <p>
+                📍 India
+            </p>
 
         </div>
 
-    </footer>
+    </div>
 
 
-    <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
+    <div class="footer-bottom">
 
-    <script>
+        <span>
+            © 2026 Prashikshan.
+            All Rights Reserved.
+        </span>
 
-        // =====================================
-        // LOAD LOGGED IN INDUSTRY
-        // =====================================
+        <span>
+            Learn • Train • Grow
+        </span>
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
+    </div>
 
-                const user =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "loggedInUser"
-                        )
-                    );
-
-                if (user) {
-
-                    const nameElement =
-                        document.getElementById(
-                            "industryUserName"
-                        );
-
-                    if (nameElement) {
-
-                        nameElement.textContent =
-                            user.fullName ||
-                            "Industry";
-
-                    }
-
-                }
-
-            }
-        );
+</footer>
 
 
-        // =====================================
-        // LOGOUT
-        // =====================================
 
-        function logoutUser() {
-
-            localStorage.removeItem(
-                "loggedInUser"
-            );
-
-            localStorage.removeItem(
-                "isLoggedIn"
-            );
-
-            localStorage.removeItem(
-                "registeredEmail"
-            );
-
-            localStorage.removeItem(
-                "registeredRole"
-            );
-
-            window.location.href =
-                "login.html";
-
-        }
-
-
-        // =====================================
-        // POST INTERNSHIP
-        // =====================================
-
-        function postInternship() {
-
-            alert(
-                "Internship posting module is ready to connect with your backend."
-            );
-
-        }
-
-    </script>
+<script src="industry.js"></script>
 
 </body>
 

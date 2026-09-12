@@ -6,8 +6,6 @@ const applicationForm =
 
 function closeApplicationForm() {
     applicationModal.classList.remove("show");
-
-    // Dashboard par wapas bhejne ke liye
     window.location.href = "index.html";
 }
 
@@ -38,30 +36,26 @@ function fillLoggedInUserDetails() {
         loggedInUser.mobile || "";
 }
 
-function getApplications() {
-    try {
-        return JSON.parse(
-            localStorage.getItem("applications")
-        ) || [];
-    } catch (error) {
-        return [];
-    }
-}
 
-applicationForm.addEventListener("submit", function (event) {
+/* ================================
+   SUBMIT INTERNSHIP APPLICATION
+================================ */
+
+applicationForm.addEventListener("submit", async function (event) {
+
     event.preventDefault();
 
-    const fullName =
+    const applicantName =
         document.getElementById("applicantName").value.trim();
 
-    const email =
+    const applicantEmail =
         document
             .getElementById("applicantEmail")
             .value
             .trim()
             .toLowerCase();
 
-    const mobile =
+    const applicantMobile =
         document.getElementById("applicantMobile").value.trim();
 
     const dateOfBirth =
@@ -100,11 +94,17 @@ applicationForm.addEventListener("submit", function (event) {
     const declaration =
         document.getElementById("declaration").checked;
 
-    const internshipId = Number(
-        document.getElementById("selectedInternshipId").value
-    );
+    const internshipId =
+        Number(
+            document.getElementById("selectedInternshipId").value
+        );
 
-    if (!/^[6-9][0-9]{9}$/.test(mobile)) {
+
+    /* ================================
+       VALIDATION
+    ================================= */
+
+    if (!/^[6-9][0-9]{9}$/.test(applicantMobile)) {
         alert(
             "Please enter a valid 10-digit Indian mobile number."
         );
@@ -123,67 +123,146 @@ applicationForm.addEventListener("submit", function (event) {
         return;
     }
 
-    const applications = getApplications();
 
-    const alreadyApplied = applications.some(
-        application =>
-            application.email === email &&
-            application.internshipId === internshipId
-    );
-
-    if (alreadyApplied) {
-        alert(
-            "You have already submitted an application for this internship."
-        );
-        return;
-    }
+    /* ================================
+       DATA FOR BACKEND
+    ================================= */
 
     const applicationData = {
-        applicationId: Date.now(),
-        internshipId,
-        fullName,
-        email,
-        mobile,
-        dateOfBirth,
-        gender,
-        qualification,
-        collegeName,
-        course,
-        currentYear,
-        academicScore,
-        address,
-        skills,
-        resumeLink,
-        coverLetter,
-        status: "Pending",
-        appliedDate: new Date().toLocaleDateString("en-GB")
+
+        internshipId: internshipId,
+
+        applicantName: applicantName,
+
+        applicantEmail: applicantEmail,
+
+        applicantMobile: applicantMobile,
+
+        dateOfBirth: dateOfBirth,
+
+        gender: gender,
+
+        qualification: qualification,
+
+        collegeName: collegeName,
+
+        course: course,
+
+        currentYear: currentYear,
+
+        academicScore: academicScore,
+
+        address: address,
+
+        skills: skills,
+
+        resumeLink: resumeLink,
+
+        coverLetter: coverLetter
     };
 
-    applications.push(applicationData);
 
-    localStorage.setItem(
-        "applications",
-        JSON.stringify(applications)
-    );
+    /* ================================
+       SEND DATA TO MYSQL
+    ================================= */
 
-    alert("Application submitted successfully.");
+    try {
 
-    applicationForm.reset();
+        const response = await fetch(
+            "http://localhost:5000/api/internship/apply",
+            {
+                method: "POST",
 
-    window.location.href = "index.html";
-});
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-applicationModal.addEventListener("click", function (event) {
-    if (event.target === applicationModal) {
-        closeApplicationForm();
+                body: JSON.stringify(applicationData)
+            }
+        );
+
+
+        const result = await response.json();
+
+
+        /* ================================
+           SUCCESS
+        ================================= */
+
+        if (response.ok) {
+
+            alert(
+                "Application submitted successfully!\nApplication ID: "
+                + result.applicationId
+            );
+
+            applicationForm.reset();
+
+            window.location.href = "index.html";
+
+            return;
+        }
+
+
+        /* ================================
+           BACKEND ERROR
+        ================================= */
+
+        alert(
+            result.message ||
+            "Application submission failed."
+        );
+
+    } catch (error) {
+
+        console.error(
+            "APPLICATION SUBMISSION ERROR:",
+            error
+        );
+
+        alert(
+            "Server connection failed.\n" +
+            "Please make sure your backend server is running."
+        );
     }
 });
 
-document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape") {
-        closeApplicationForm();
+
+/* ================================
+   CLOSE MODAL
+================================ */
+
+applicationModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (event.target === applicationModal) {
+            closeApplicationForm();
+        }
+
     }
-});
+);
+
+
+/* ================================
+   ESC KEY
+================================ */
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key === "Escape") {
+            closeApplicationForm();
+        }
+
+    }
+);
+
+
+/* ================================
+   AUTO-FILL USER
+================================ */
 
 document.addEventListener(
     "DOMContentLoaded",

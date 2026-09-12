@@ -17,28 +17,13 @@ const db = mysql.createPool({
     keepAliveInitialDelay: 10000
 });
 
-// Test MySQL connection
 db.getConnection((err, connection) => {
     if (err) {
         console.error("================================");
         console.error("❌ MYSQL CONNECTION FAILED");
         console.error("================================");
-
         console.error("Code:", err.code);
         console.error("Message:", err.message);
-
-        if (err.code === "ECONNREFUSED") {
-            console.error("👉 MySQL server is not reachable.");
-        }
-
-        if (err.code === "ER_ACCESS_DENIED_ERROR") {
-            console.error("👉 Check MYSQLUSER and MYSQLPASSWORD.");
-        }
-
-        if (err.code === "ER_BAD_DB_ERROR") {
-            console.error("👉 Check MYSQLDATABASE.");
-        }
-
         return;
     }
 
@@ -53,14 +38,8 @@ db.getConnection((err, connection) => {
     connection.release();
 });
 
-// Handle pool errors
 db.on("error", (err) => {
-    console.error("================================");
-    console.error("❌ MYSQL POOL ERROR");
-    console.error("================================");
-
-    console.error("Code:", err.code);
-    console.error("Message:", err.message);
+    console.error("MYSQL POOL ERROR:", err);
 });
 
 module.exports = db;
