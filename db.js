@@ -3,11 +3,11 @@ require("dotenv").config();
 const mysql = require("mysql2");
 
 const db = mysql.createPool({
-    host: process.env.MYSQLHOST || "127.0.0.1",
-    user: process.env.MYSQLUSER || "root",
-    password: process.env.MYSQLPASSWORD || "",
-    database: process.env.MYSQLDATABASE || "prashikshan_db",
-    port: Number(process.env.MYSQLPORT) || 3307,
+    host: process.env.MYSQLHOST,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: Number(process.env.MYSQLPORT),
 
     waitForConnections: true,
     connectionLimit: 10,
