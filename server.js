@@ -1,47 +1,35 @@
 // ========================================
-// PRASHIKSHAN SERVER
-// Student | Industry | Institute
-// Registration + Login
+// PRASHIKSHAN BACKEND SERVER
+// Node.js + Express + MySQL
+// Railway + Local MySQL/XAMPP
 // ========================================
 
 require("dotenv").config();
 
 const express = require("express");
-const path = require("path");
 const cors = require("cors");
-
-// ========================================
-// DATABASE
-// ========================================
+const path = require("path");
 
 const db = require("./db");
 
-// ========================================
-// EXPRESS APP
-// ========================================
-
 const app = express();
 
-const PORT = process.env.PORT || 5000;
 
 // ========================================
 // MIDDLEWARE
 // ========================================
 
-app.use(
-    cors({
-        origin: true,
-        credentials: true
-    })
-);
+app.use(cors({
+    origin: true,
+    credentials: true
+}));
 
 app.use(express.json());
 
-app.use(
-    express.urlencoded({
-        extended: true
-    })
-);
+app.use(express.urlencoded({
+    extended: true
+}));
+
 
 // ========================================
 // SERVE FRONTEND
@@ -49,391 +37,231 @@ app.use(
 
 app.use(express.static(__dirname));
 
+
+// ========================================
+// PORT
+// ========================================
+
+const PORT = process.env.PORT || 5000;
+
+
 // ========================================
 // HOME PAGE
 // ========================================
 
 app.get("/", (req, res) => {
 
-    res.sendFile(
-        path.join(__dirname, "index.html")
-    );
+    res.sendFile(path.join(__dirname, "index.html"));
 
 });
 
+
 // ========================================
-// SERVER TEST
+// BASIC TEST API
 // ========================================
 
 app.get("/api/test", (req, res) => {
 
-    console.log("🔥 Server test requested");
+    res.json({
 
-    res.status(200).json({
         success: true,
-        message: "Prashikshan server is working!",
-        port: PORT
+
+        message: "Prashikshan API is working successfully 🚀"
+
     });
 
 });
 
+
 // ========================================
-// DATABASE TEST
+// DATABASE TEST API
 // ========================================
 
 app.get("/api/test-db", (req, res) => {
 
-    console.log("🔥 Database test requested");
+    const sql = "SELECT 1 AS test";
 
-    db.query(
-        "SELECT 1 AS test",
-        (err, results) => {
+    db.query(sql, (err, result) => {
 
-            if (err) {
+        if (err) {
 
-                console.error(
-                    "❌ Database test failed:",
-                    err.message
-                );
+            console.error("================================");
+            console.error("❌ DATABASE TEST FAILED");
+            console.error("================================");
 
-                return res.status(500).json({
-                    success: false,
-                    message: "Database connection failed.",
-                    error: err.message
-                });
+            console.error("Code:", err.code);
+            console.error("Message:", err.message);
 
-            }
+            return res.status(500).json({
 
-            console.log(
-                "✅ Database test successful"
-            );
+                success: false,
 
-            return res.status(200).json({
+                message: "Database connection failed",
 
-                success: true,
-
-                message:
-                    "Database connection is working!",
-
-                database:
-                    process.env.DB_NAME || "Unknown",
-
-                result:
-                    results
+                error: err.message
 
             });
 
         }
-    );
+
+
+        res.json({
+
+            success: true,
+
+            message: "Database connected successfully",
+
+            database:
+                process.env.MYSQLDATABASE ||
+                process.env.DB_NAME ||
+                "Unknown",
+
+            host:
+                process.env.MYSQLHOST ||
+                process.env.DB_HOST ||
+                "Unknown",
+
+            port:
+                process.env.MYSQLPORT ||
+                process.env.DB_PORT ||
+                "Unknown",
+
+            result: result
+
+        });
+
+    });
 
 });
 
+
 // ========================================
 // REGISTER API
-// STUDENT / INDUSTRY / INSTITUTE
 // ========================================
 
 app.post("/api/register", (req, res) => {
 
-    console.log(
-        "================================"
-    );
-
-    console.log(
-        "🔥 REGISTRATION REQUEST"
-    );
-
-    console.log(
-        "================================"
-    );
-
     const {
-        fullName,
+        name,
         email,
-        mobile,
-        role,
-        password
+        password,
+        role
     } = req.body;
 
-    // ========================================
-    // BASIC VALIDATION
-    // ========================================
 
-    if (
-        !fullName ||
-        !email ||
-        !mobile ||
-        !role ||
-        !password
-    ) {
+    // ----------------------------------------
+    // VALIDATION
+    // ----------------------------------------
+
+    if (!name || !email || !password || !role) {
 
         return res.status(400).json({
 
             success: false,
 
-            message:
-                "All fields are required."
+            message: "All fields are required"
 
         });
 
     }
 
-    // ========================================
-    // CLEAN DATA
-    // ========================================
 
-    const cleanFullName =
-        String(fullName).trim();
+    // ----------------------------------------
+    // CHECK VALID ROLE
+    // ----------------------------------------
 
-    const cleanEmail =
-        String(email)
-            .trim()
-            .toLowerCase();
-
-    const cleanMobile =
-        String(mobile).trim();
-
-    const cleanRole =
-        String(role)
-            .trim()
-            .toLowerCase();
-
-    const cleanPassword =
-        String(password);
-
-    // ========================================
-    // ROLE VALIDATION
-    // ========================================
-
-    const allowedRoles = [
+    const validRoles = [
         "student",
         "industry",
         "institute"
     ];
 
-    if (!allowedRoles.includes(cleanRole)) {
+    if (!validRoles.includes(role)) {
 
         return res.status(400).json({
 
             success: false,
 
             message:
-                "Invalid account type. Use student, industry or institute."
+                "Invalid role. Use student, industry or institute."
 
         });
 
     }
 
-    // ========================================
-    // NAME VALIDATION
-    // ========================================
 
-    if (cleanFullName.length < 2) {
+    // ----------------------------------------
+    // CHECK EXISTING USER
+    // ----------------------------------------
 
-        return res.status(400).json({
-
-            success: false,
-
-            message:
-                "Please enter a valid full name."
-
-        });
-
-    }
-
-    // ========================================
-    // EMAIL VALIDATION
-    // ========================================
-
-    const emailPattern =
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailPattern.test(cleanEmail)) {
-
-        return res.status(400).json({
-
-            success: false,
-
-            message:
-                "Please enter a valid email address."
-
-        });
-
-    }
-
-    // ========================================
-    // MOBILE VALIDATION
-    // ========================================
-
-    const mobilePattern =
-        /^[0-9]{10}$/;
-
-    if (!mobilePattern.test(cleanMobile)) {
-
-        return res.status(400).json({
-
-            success: false,
-
-            message:
-                "Mobile number must contain exactly 10 digits."
-
-        });
-
-    }
-
-    // ========================================
-    // PASSWORD VALIDATION
-    // ========================================
-
-    if (cleanPassword.length < 8) {
-
-        return res.status(400).json({
-
-            success: false,
-
-            message:
-                "Password must contain at least 8 characters."
-
-        });
-
-    }
-
-    // ========================================
-    // CHECK EMAIL OR MOBILE
-    // ========================================
-
-    const checkUserSQL = `
-        SELECT
-            id,
-            email,
-            mobile
+    const checkSql = `
+        SELECT id
         FROM users
-        WHERE email = ? OR mobile = ?
+        WHERE email = ?
         LIMIT 1
     `;
 
+
     db.query(
-        checkUserSQL,
-        [
-            cleanEmail,
-            cleanMobile
-        ],
-        (err, results) => {
+        checkSql,
+        [email],
+        (err, result) => {
 
             if (err) {
 
-                console.error(
-                    "❌ User check error:",
-                    err.message
-                );
+                console.error("User check error:", err);
 
                 return res.status(500).json({
 
                     success: false,
 
-                    message:
-                        "Database error while checking user.",
+                    message: "Database error",
 
-                    error:
-                        err.message
+                    error: err.message
 
                 });
 
             }
 
-            // ========================================
-            // EMAIL / MOBILE EXISTS
-            // ========================================
 
-            if (results.length > 0) {
+            // ----------------------------------------
+            // USER ALREADY EXISTS
+            // ----------------------------------------
 
-                const existingUser =
-                    results[0];
+            if (result.length > 0) {
 
-                if (
-                    existingUser.email ===
-                    cleanEmail
-                ) {
+                return res.status(409).json({
 
-                    return res.status(409).json({
+                    success: false,
 
-                        success: false,
+                    message: "Email already registered"
 
-                        message:
-                            "This email is already registered."
-
-                    });
-
-                }
-
-                if (
-                    existingUser.mobile ===
-                    cleanMobile
-                ) {
-
-                    return res.status(409).json({
-
-                        success: false,
-
-                        message:
-                            "This mobile number is already registered."
-
-                    });
-
-                }
+                });
 
             }
 
-            // ========================================
-            // INSERT USER
-            // ========================================
 
-            const insertSQL = `
+            // ----------------------------------------
+            // INSERT USER
+            // ----------------------------------------
+
+            const insertSql = `
                 INSERT INTO users
-                (
-                    full_name,
-                    email,
-                    mobile,
-                    role,
-                    password
-                )
-                VALUES
-                (?, ?, ?, ?, ?)
+                (name, email, password, role)
+                VALUES (?, ?, ?, ?)
             `;
 
+
             db.query(
-                insertSQL,
-                [
-                    cleanFullName,
-                    cleanEmail,
-                    cleanMobile,
-                    cleanRole,
-                    cleanPassword
-                ],
-                (insertErr, result) => {
+                insertSql,
+                [name, email, password, role],
+                (err, result) => {
 
-                    if (insertErr) {
+                    if (err) {
 
                         console.error(
-                            "================================"
-                        );
-
-                        console.error(
-                            "❌ USER INSERT ERROR"
-                        );
-
-                        console.error(
-                            "Code:",
-                            insertErr.code
-                        );
-
-                        console.error(
-                            "Message:",
-                            insertErr.message
-                        );
-
-                        console.error(
-                            "================================"
+                            "Registration error:",
+                            err
                         );
 
                         return res.status(500).json({
@@ -441,63 +269,27 @@ app.post("/api/register", (req, res) => {
                             success: false,
 
                             message:
-                                "Failed to create account.",
+                                "Registration failed",
 
-                            error:
-                                insertErr.message
+                            error: err.message
 
                         });
 
                     }
 
-                    // ========================================
+
+                    // ----------------------------------------
                     // SUCCESS
-                    // ========================================
+                    // ----------------------------------------
 
-                    console.log(
-                        "================================"
-                    );
-
-                    console.log(
-                        "✅ USER REGISTERED"
-                    );
-
-                    console.log(
-                        "User ID:",
-                        result.insertId
-                    );
-
-                    console.log(
-                        "Name:",
-                        cleanFullName
-                    );
-
-                    console.log(
-                        "Email:",
-                        cleanEmail
-                    );
-
-                    console.log(
-                        "Role:",
-                        cleanRole
-                    );
-
-                    console.log(
-                        "================================"
-                    );
-
-                    return res.status(201).json({
+                    res.status(201).json({
 
                         success: true,
 
                         message:
-                            "Registration successful!",
+                            "User registered successfully",
 
-                        userId:
-                            result.insertId,
-
-                        role:
-                            cleanRole
+                        userId: result.insertId
 
                     });
 
@@ -509,89 +301,60 @@ app.post("/api/register", (req, res) => {
 
 });
 
+
 // ========================================
 // LOGIN API
-// Student / Industry / Institute
 // ========================================
 
 app.post("/api/login", (req, res) => {
 
-    console.log(
-        "================================"
-    );
-
-    console.log(
-        "🔥 LOGIN REQUEST"
-    );
-
-    console.log(
-        "================================"
-    );
-
     const {
-        loginId,
+        email,
         password
     } = req.body;
 
-    // ========================================
-    // VALIDATION
-    // ========================================
 
-    if (!loginId || !password) {
+    // ----------------------------------------
+    // VALIDATION
+    // ----------------------------------------
+
+    if (!email || !password) {
 
         return res.status(400).json({
 
             success: false,
 
             message:
-                "Email/Mobile and password are required."
+                "Email and password are required"
 
         });
 
     }
 
-    const cleanLoginId =
-        String(loginId)
-            .trim()
-            .toLowerCase();
 
-    const cleanPassword =
-        String(password);
+    // ----------------------------------------
+    // LOGIN QUERY
+    // ----------------------------------------
 
-    // ========================================
-    // FIND USER
-    // ========================================
-
-    const loginSQL = `
-        SELECT
-            id,
-            full_name,
-            email,
-            mobile,
-            role,
-            password
+    const sql = `
+        SELECT *
         FROM users
-        WHERE email = ? OR mobile = ?
+        WHERE email = ?
+        AND password = ?
         LIMIT 1
     `;
 
-    db.query(
-        loginSQL,
-        [
-            cleanLoginId,
-            cleanLoginId
-        ],
-        (err, results) => {
 
-            // ========================================
-            // DATABASE ERROR
-            // ========================================
+    db.query(
+        sql,
+        [email, password],
+        (err, result) => {
 
             if (err) {
 
                 console.error(
-                    "❌ LOGIN DATABASE ERROR:",
-                    err.message
+                    "Login error:",
+                    err
                 );
 
                 return res.status(500).json({
@@ -599,7 +362,7 @@ app.post("/api/login", (req, res) => {
                     success: false,
 
                     message:
-                        "Database error.",
+                        "Login failed",
 
                     error:
                         err.message
@@ -608,110 +371,48 @@ app.post("/api/login", (req, res) => {
 
             }
 
-            // ========================================
+
+            // ----------------------------------------
             // USER NOT FOUND
-            // ========================================
+            // ----------------------------------------
 
-            if (results.length === 0) {
-
-                console.log(
-                    "❌ User not found:",
-                    cleanLoginId
-                );
+            if (result.length === 0) {
 
                 return res.status(401).json({
 
                     success: false,
 
                     message:
-                        "Invalid email/mobile or password."
+                        "Invalid email or password"
 
                 });
 
             }
 
-            const user =
-                results[0];
 
-            // ========================================
-            // PASSWORD CHECK
-            // ========================================
-
-            if (
-                cleanPassword !==
-                user.password
-            ) {
-
-                console.log(
-                    "❌ Wrong password:",
-                    cleanLoginId
-                );
-
-                return res.status(401).json({
-
-                    success: false,
-
-                    message:
-                        "Invalid email/mobile or password."
-
-                });
-
-            }
-
-            // ========================================
+            // ----------------------------------------
             // LOGIN SUCCESS
-            // ========================================
+            // ----------------------------------------
 
-            console.log(
-                "================================"
-            );
+            const user = result[0];
 
-            console.log(
-                "✅ LOGIN SUCCESS"
-            );
 
-            console.log(
-                "User:",
-                user.full_name
-            );
-
-            console.log(
-                "Email:",
-                user.email
-            );
-
-            console.log(
-                "Role:",
-                user.role
-            );
-
-            console.log(
-                "================================"
-            );
-
-            return res.status(200).json({
+            res.json({
 
                 success: true,
 
                 message:
-                    "Login successful!",
+                    "Login successful",
 
                 user: {
 
-                    id:
-                        user.id,
+                    id: user.id,
 
-                    fullName:
-                        user.full_name,
+                    name: user.name,
 
-                    email:
-                        user.email,
+                    email: user.email,
 
-                    mobile:
-                        user.mobile,
-
-                    role:
-                        user.role
+                    role: user.role
 
                 }
 
@@ -722,368 +423,68 @@ app.post("/api/login", (req, res) => {
 
 });
 
-// ========================================
-// GET USER BY ID
-// Useful for dashboard
-// ========================================
-
-app.get("/api/user/:id", (req, res) => {
-
-    const userId =
-        req.params.id;
-
-    const sql = `
-        SELECT
-            id,
-            full_name,
-            email,
-            mobile,
-            role
-        FROM users
-        WHERE id = ?
-        LIMIT 1
-    `;
-
-    db.query(
-        sql,
-        [userId],
-        (err, results) => {
-
-            if (err) {
-
-                console.error(
-                    "❌ Get user error:",
-                    err.message
-                );
-
-                return res.status(500).json({
-
-                    success: false,
-
-                    message:
-                        "Database error."
-
-                });
-
-            }
-
-            if (results.length === 0) {
-
-                return res.status(404).json({
-
-                    success: false,
-
-                    message:
-                        "User not found."
-
-                });
-
-            }
-
-            const user =
-                results[0];
-
-            return res.json({
-
-                success: true,
-
-                user: {
-
-                    id:
-                        user.id,
-
-                    fullName:
-                        user.full_name,
-
-                    email:
-                        user.email,
-
-                    mobile:
-                        user.mobile,
-
-                    role:
-                        user.role
-
-                }
-
-            });
-
-        }
-    );
-
-});
 
 // ========================================
-// INTERNSHIP APPLICATION API
-// ========================================
-
-app.post(
-    "/api/internship/apply",
-    (req, res) => {
-
-        console.log(
-            "🔥 Internship application received"
-        );
-
-        const {
-            internshipId,
-            applicantName,
-            applicantEmail,
-            applicantMobile,
-            dateOfBirth,
-            gender,
-            qualification,
-            collegeName,
-            course,
-            currentYear,
-            academicScore,
-            address,
-            skills,
-            resumeLink,
-            coverLetter
-        } = req.body;
-
-        // ========================================
-        // VALIDATION
-        // ========================================
-
-        if (
-            !internshipId ||
-            !applicantName ||
-            !applicantEmail ||
-            !applicantMobile ||
-            !dateOfBirth ||
-            !gender ||
-            !qualification ||
-            !collegeName ||
-            !course ||
-            !currentYear ||
-            academicScore === undefined ||
-            academicScore === null ||
-            !address ||
-            !skills ||
-            !resumeLink ||
-            !coverLetter
-        ) {
-
-            return res.status(400).json({
-
-                success: false,
-
-                message:
-                    "All application fields are required."
-
-            });
-
-        }
-
-        // ========================================
-        // INSERT
-        // ========================================
-
-        const sql = `
-            INSERT INTO internship_applications
-            (
-                internship_id,
-                applicant_name,
-                applicant_email,
-                applicant_mobile,
-                date_of_birth,
-                gender,
-                qualification,
-                college_name,
-                course,
-                current_year,
-                academic_score,
-                address,
-                skills,
-                resume_link,
-                cover_letter
-            )
-            VALUES
-            (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `;
-
-        const values = [
-
-            internshipId,
-            applicantName,
-            applicantEmail,
-            applicantMobile,
-            dateOfBirth,
-            gender,
-            qualification,
-            collegeName,
-            course,
-            currentYear,
-            academicScore,
-            address,
-            skills,
-            resumeLink,
-            coverLetter
-
-        ];
-
-        db.query(
-            sql,
-            values,
-            (err, result) => {
-
-                if (err) {
-
-                    console.error(
-                        "❌ APPLICATION INSERT FAILED:",
-                        err.message
-                    );
-
-                    return res.status(500).json({
-
-                        success: false,
-
-                        message:
-                            "Failed to submit internship application.",
-
-                        error:
-                            err.message
-
-                    });
-
-                }
-
-                console.log(
-                    "✅ INTERNSHIP APPLICATION SAVED:",
-                    result.insertId
-                );
-
-                return res.status(201).json({
-
-                    success: true,
-
-                    message:
-                        "Internship application submitted successfully!",
-
-                    applicationId:
-                        result.insertId
-
-                });
-
-            }
-        );
-
-    }
-);
-
-// ========================================
-// 404
+// 404 API HANDLER
 // ========================================
 
 app.use((req, res) => {
 
-    console.log(
-        `❌ 404: ${req.method} ${req.originalUrl}`
-    );
-
-    return res.status(404).json({
+    res.status(404).json({
 
         success: false,
 
-        message:
-            `Route ${req.method} ${req.originalUrl} not found`
+        message: "Route not found",
+
+        path: req.originalUrl
 
     });
 
 });
 
+
 // ========================================
-// GLOBAL ERROR
+// GLOBAL ERROR HANDLER
 // ========================================
 
-app.use(
-    (err, req, res, next) => {
+app.use((err, req, res, next) => {
 
-        console.error(
-            "================================"
-        );
+    console.error("================================");
+    console.error("❌ SERVER ERROR");
+    console.error("================================");
 
-        console.error(
-            "❌ SERVER ERROR"
-        );
+    console.error(err);
 
-        console.error(
-            err
-        );
 
-        console.error(
-            "================================"
-        );
+    res.status(500).json({
 
-        return res.status(500).json({
+        success: false,
 
-            success: false,
+        message: "Internal server error",
 
-            message:
-                "Internal server error."
+        error: err.message
 
-        });
+    });
 
-    }
-);
+});
+
 
 // ========================================
 // START SERVER
 // ========================================
 
-app.listen(
-    PORT,
-    () => {
+app.listen(PORT, () => {
 
-        console.log(
-            "========================================"
-        );
+    console.log("========================================");
+    console.log("🚀 PRASHIKSHAN SERVER STARTED");
+    console.log("========================================");
 
-        console.log(
-            "🚀 PRASHIKSHAN SERVER STARTED"
-        );
+    console.log("PORT:", PORT);
 
-        console.log(
-            "========================================"
-        );
+    console.log("API:", `/api/test`);
 
-        console.log(
-            `🌐 http://localhost:${PORT}`
-        );
+    console.log("DATABASE TEST:", `/api/test-db`);
 
-        console.log(
-            `🧪 http://localhost:${PORT}/api/test`
-        );
+    console.log("========================================");
 
-        console.log(
-            `🗄️ http://localhost:${PORT}/api/test-db`
-        );
-
-        console.log(
-            "========================================"
-        );
-
-        console.log(
-            "👨‍🎓 Student Registration: /api/register"
-        );
-
-        console.log(
-            "🏢 Industry Registration: /api/register"
-        );
-
-        console.log(
-            "🏫 Institute Registration: /api/register"
-        );
-
-        console.log(
-            "🔐 Login: /api/login"
-        );
-
-        console.log(
-            "========================================"
-        );
-
-    }
-);
+});
